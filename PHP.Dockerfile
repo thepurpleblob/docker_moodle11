@@ -5,3 +5,5 @@ RUN docker-php-ext-install pdo pdo_mysql mysqli gd xmlrpc soap intl zip xsl
 RUN pecl install -o -f redis &&  rm -rf /tmp/pear &&  docker-php-ext-enable redis
 
 RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
+
+COPY ./moodlephp.ini "$PHP_INI_DIR/conf.d/moodlephp.ini"
