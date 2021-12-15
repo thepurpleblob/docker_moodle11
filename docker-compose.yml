@@ -12,7 +12,13 @@ services:
             context: .
             dockerfile: PHP.Dockerfile
         volumes:
-            - ./app:/app
+            - ./app:/app:delegated
+    cron:
+        build:
+            context: .
+            dockerfile: CRON.Dockerfile
+        volumes:
+            - ./app:/app:delegated
     mysql:
         image: mariadb:10.5
         environment:
@@ -21,7 +27,7 @@ services:
             MYSQL_PASSWORD: 'moodlepass'
             MYSQL_DATABASE: 'moodle11'
         volumes:
-            - mysqldata:/var/lib/mysql
+            - mysqldata:/var/lib/mysql:delegated
         ports:
             - 3306:3306
     redis:
